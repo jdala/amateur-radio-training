@@ -10,7 +10,7 @@ type MyHeadProps = {
     noIndex?: boolean;
 };
 export const MyHead: FC<MyHeadProps> = ({ page, title, /* description, */ noIndex }) => {
-    const baseUrl = "";
+    const baseUrl = "https://jdala.github.io/amateur-radio-training";
     const _title = title + " | Ραδιοερασιτεχνία";
 
     return <>
