@@ -220,25 +220,27 @@ const MistakesSection: FC<{ data: AnswersType[] }> = ({ data }) => {
 };
 
 const Test: FC<PageProps> = ({ location }) => {
-    const params = new URLSearchParams(location.search);
-    // const ctgA = params.get("ctg_a");
-    const ctgB = params.get("ctg_b");
-    const ctgC = params.get("ctg_c");
-    const totalF = params.get("total_f");
-
-    // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
-    if (!isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
-        navigate("/404");
-        return null;
-    }
-
     const [data, setData] = useState<CategoryDataType[]>([]);
     const [answers, setAnswers] = useState<AnswersType[]>([]);
     const [results, setResults] = useState<ResultsType>();
     const [currCardId, setCurrCardId] = useState("");
     const [finished, setFinished] = useState(false);
+    const [totalFailures, setTotalFailures] = useState<string | null | undefined>();
 
     useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        // const ctgA = params?.get("ctg_a");
+        const ctgB = params?.get("ctg_b");
+        const ctgC = params?.get("ctg_c");
+        const totalF = params?.get("total_f");
+
+        // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
+        if (!isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
+            navigate("/404");
+        }
+
+        setTotalFailures(totalF);
+
         shuffleArray(CATEGORY_B);
         shuffleArray(CATEGORY_C);
 
@@ -277,7 +279,7 @@ const Test: FC<PageProps> = ({ location }) => {
         const correctCount = totalCount - failCount;
 
         setResults({
-            passed: failCount < Number(totalF),
+            passed: failCount < Number(totalFailures),
             totalCount,
             failCount,
             correctCount,

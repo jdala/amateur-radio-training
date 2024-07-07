@@ -77,24 +77,21 @@ const StudyCard: FC<StudyCardProps> = ({ data, onNextClick, className }) => {
 };
 
 const StudyCards: FC<PageProps> = ({ location }) => {
-    const params = new URLSearchParams(location.search);
-    // const ctgA = params.get("ctg_a");
-    const ctgB = params.get("ctg_b");
-    const ctgC = params.get("ctg_c");
-
-    console.log("--> ctgB:", isNumber(ctgB), ctgB)
-    console.log("--> ctgC:", isNumber(ctgC), ctgC)
-    // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC)) {
-    if (!isNumber(ctgB) || !isNumber(ctgC)) {
-        navigate("/404");
-        return null;
-    }
-
     const [data, setData] = useState<CategoryDataType[]>([]);
     const [currCardId, setCurrCardId] = useState("");
     const [finished, setFinished] = useState(false);
 
     useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        // const ctgA = params?.get("ctg_a");
+        const ctgB = params?.get("ctg_b");
+        const ctgC = params?.get("ctg_c");
+
+        // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC)) {
+        if (!isNumber(ctgB) || !isNumber(ctgC)) {
+            navigate("/404");
+        }
+
         const _data: CategoryDataType[] = [];
         // if (Boolean(Number(ctgA)))
         //     data.concat(CATEGORY_A);
