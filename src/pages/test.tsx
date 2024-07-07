@@ -237,6 +237,7 @@ const Test: FC<PageProps> = ({ location }) => {
         // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
         if (!isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
             navigate("/404");
+            return;
         }
 
         setTotalFailures(totalF);

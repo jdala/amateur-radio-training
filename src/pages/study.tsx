@@ -90,6 +90,7 @@ const StudyCards: FC<PageProps> = ({ location }) => {
         // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC)) {
         if (!isNumber(ctgB) || !isNumber(ctgC)) {
             navigate("/404");
+            return;
         }
 
         const _data: CategoryDataType[] = [];
