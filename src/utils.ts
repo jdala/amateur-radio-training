@@ -1,5 +1,5 @@
 export const imgSrc = (name: string) => {
-    return "/images/" + name;
+    return "/amateur-radio-training/images/" + name;
 }
 
 export const isNumber = (val: string | null | undefined) => {
