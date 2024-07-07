@@ -1,0 +1,18 @@
+.button {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    min-height: 40px;
+    color: var(--text-light);
+    background-color: var(--bg-darker);
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #181818E6;
+}
+.button:disabled {
+    background-color: var(--bg-darker);
+    opacity: 0.7;
+    cursor: not-allowed;
+}

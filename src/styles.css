@@ -1,0 +1,99 @@
+:root {
+    --green: #008000;
+    --red: #BF3427;
+    --text-dark: #181818;
+    --text-light: #EDEDED;
+    --bg-dark: #A3A3A3;
+    --bg-darker: #181818;
+    --bg-light: #EDEDED;
+}
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    /* line-height: 1.5; */
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+    background-color: var(--bg-darker);
+    color: var(--text-dark);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    color: inherit;
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+}
+/* end of CSS Reset */
+
+h1 {
+    font-size: 28px;
+}
+
+a {
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: 700;
+    color: inherit;
+}
+a:hover {
+    opacity: 0.7;
+}
+
+main {
+    margin: 20px 10px;
+}
+
+.shown {
+    display: block;
+}
+.hidden {
+    display: none !important;
+}
+
+.mob-col {
+    display: flex;
+}
+
+
+@media screen and (max-width: 991px) {
+    .mob-col {
+        flex-direction: column-reverse;
+    }
+}
