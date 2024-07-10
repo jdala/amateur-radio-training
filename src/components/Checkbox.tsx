@@ -17,14 +17,22 @@ const Checkbox: FC<CheckboxProps> = ({
     onChange,
 }) => {
     return (
-        <label className={checkboxStyles.container}>
+        <label style={{
+            display: "flex",
+            alignItems: "flex-start",
+            position: "relative",
+            paddingLeft: 26,
+            cursor: Boolean(onChange) ? "pointer" : "default",
+            userSelect: "none",
+            minHeight: 19,
+        }}>
             {label}
             <input
                 id={id}
                 className={checkboxStyles.input}
                 type="checkbox"
                 checked={value ?? fields?.[id]}
-                onChange={onChange}
+                onChange={onChange ?? (() => {})}
                 style={{
                     position: "absolute",
                     opacity: 0,

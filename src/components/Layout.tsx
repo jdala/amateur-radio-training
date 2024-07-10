@@ -23,9 +23,11 @@ export const MyHead: FC<MyHeadProps> = ({ page, title, /* description, */ noInde
         <link rel="canonical" href={`${baseUrl}${page}`} />
         {/* <meta name="description" content={description} /> */}
 
-        <link rel="icon" href="/images/favicon.ico" sizes="any" /> {/* <!-- 32×32 --> */}
+        {/*
+        <link rel="icon" href="/images/favicon.ico" sizes="any" /> {/* <!-- 32×32 --> * /}
         <link rel="icon" href="/images/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" /> {/*<!-- 180×180 -->*/}
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" /> {/*<!-- 180×180 -->* /}
+        */}
 
         {noIndex && <meta name="robots" content="noindex" />}
 

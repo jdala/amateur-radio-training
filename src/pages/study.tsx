@@ -86,6 +86,7 @@ const StudyCards: FC<PageProps> = ({ location }) => {
         // const ctgA = params?.get("ctg_a");
         const ctgB = params?.get("ctg_b");
         const ctgC = params?.get("ctg_c");
+        const initId = params?.get("init_id");
 
         // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC)) {
         if (!isNumber(ctgB) || !isNumber(ctgC)) {
@@ -102,6 +103,15 @@ const StudyCards: FC<PageProps> = ({ location }) => {
             _data.push.apply(_data, CATEGORY_C);
 
         setData(_data);
+
+        if (initId !== "" && initId !== null && typeof initId !== "undefined") {
+            const ids = _data.map((item) => item.id);
+            if (ids.includes(initId)) {
+                setCurrCardId(initId);
+                return;
+            }
+        }
+
         setCurrCardId(_data[0].id);
     }, []);
 

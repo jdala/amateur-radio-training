@@ -5,9 +5,8 @@ export const imgSrc = (name: string) => {
 export const isNumber = (val: string | null | undefined) => {
     const pattern = /^-?[\d.]+(?:e-?\d+)?$/;
 
-    if (val) {
-        console.log(val, typeof val === "undefined", val === null, val?.toString().trim() === "", !pattern.test(val.toString().trim()));
-    }
+    // if (val)
+    //     console.log(val, typeof val === "undefined", val === null, val?.toString().trim() === "", !pattern.test(val.toString().trim()));
 
     if (typeof val === "undefined" || val === null || val.toString().trim() === "" || !pattern.test(val.toString().trim())) {
         return false;

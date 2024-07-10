@@ -22,6 +22,7 @@ type StudyFormFields = {
     // categoryA: boolean;
     categoryB: boolean;
     categoryC: boolean;
+    initId: string;
 };
 
 const StudyForm: FC  = () => {
@@ -32,6 +33,7 @@ const StudyForm: FC  = () => {
         // categoryA: true,
         categoryB: true,
         categoryC: true,
+        initId: "",
     })
 
     const [formFields, setFormFields] = useState<StudyFormFields>(initFields);
@@ -43,9 +45,16 @@ const StudyForm: FC  = () => {
         }))
     };
 
+    const handleTextChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormFields((prevState) => ({
+            ...prevState,
+            [e.target.id]: e.target.value.replace(/\D/g,"").replace(/^0+(\d)/gm, "$1")
+        }))
+    }, []);
+
     useEffect(() => {
-        // const { categoryA, categoryB, categoryC } = formFields;
-        const { categoryB, categoryC } = formFields;
+        // const { categoryA, categoryB, categoryC, initId } = formFields;
+        const { categoryB, categoryC, initId } = formFields;
 
         // if (!categoryA && !categoryB && !categoryC) {
         if (!categoryB && !categoryC) {
@@ -53,17 +62,15 @@ const StudyForm: FC  = () => {
             setUrl("#");
         } else {
             setIsDisabled(false);
-            // setUrl(`/study?ctg_a=${Number(categoryA)}&ctg_b=${Number(categoryB)}&ctg_c=${Number(categoryC)}`)
-            setUrl(`/study?ctg_b=${Number(categoryB)}&ctg_c=${Number(categoryC)}`)
+            // setUrl(`/study?ctg_a=${Number(categoryA)}&ctg_b=${Number(categoryB)}&ctg_c=${Number(categoryC)&init_id=${Number(initId)}`)
+            setUrl(`/study?ctg_b=${Number(categoryB)}&ctg_c=${Number(categoryC)}&init_id=${Number(initId)}`)
         }
 
     }, [formFields]);
 
     return (
         <FormCard title="Εξάσκηση">
-            <label style={{ marginBottom: 7 }}>
-                Επέλεξε κατηγορίες ερωτήσεων
-            </label>
+            <label>Επέλεξε κατηγορίες ερωτήσεων</label>
             {/* <Checkbox
                 id="categoryA"
                 fields={formFields}
@@ -81,6 +88,14 @@ const StudyForm: FC  = () => {
                 fields={formFields}
                 onChange={handleCheckboxChange}
                 label="Κατηγορία Γ"
+            />
+
+            <Input
+                id="initId"
+                fields={formFields}
+                onChange={handleTextChange}
+                label="Αριθμός πρώτης ερώτησης"
+                containerStyle={{ marginTop: 7 }}
             />
 
             <Button isDisabled={isDisabled} onClick={() => navigate(url)} style={{ marginTop: 15 }}>
@@ -113,7 +128,7 @@ const TestForm: FC  = () => {
     const handleTextChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setFormFields((prevState) => ({
             ...prevState,
-            [e.target.id]:  e.target.value ? e.target.value.replace(/\D/g,"").replace(/^0+(\d)/gm, "$1") : "0"
+            [e.target.id]: e.target.value ? e.target.value.replace(/\D/g,"").replace(/^0+(\d)/gm, "$1") : "0"
         }))
     }, []);
 

@@ -1,16 +1,3 @@
-.container {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    padding-left: 26px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    min-height: 19px;
-}
-
 .checkmark {
     position: absolute;
     top: 0;
