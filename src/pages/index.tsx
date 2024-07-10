@@ -19,9 +19,9 @@ const FormCard: FC<{ title: string; children: ReactNode }> = ({ title, children 
 };
 
 type StudyFormFields = {
-    // categoryA: boolean;
-    categoryB: boolean;
-    categoryC: boolean;
+    // unitA: boolean;
+    unitB: boolean;
+    unitC: boolean;
     initId: string;
 };
 
@@ -30,9 +30,9 @@ const StudyForm: FC  = () => {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const { current: initFields} = useRef<StudyFormFields>({
-        // categoryA: true,
-        categoryB: true,
-        categoryC: true,
+        // unitA: true,
+        unitB: true,
+        unitC: true,
         initId: "",
     })
 
@@ -53,41 +53,41 @@ const StudyForm: FC  = () => {
     }, []);
 
     useEffect(() => {
-        // const { categoryA, categoryB, categoryC, initId } = formFields;
-        const { categoryB, categoryC, initId } = formFields;
+        // const { unitA, unitB, unitC, initId } = formFields;
+        const { unitB, unitC, initId } = formFields;
 
-        // if (!categoryA && !categoryB && !categoryC) {
-        if (!categoryB && !categoryC) {
+        // if (!unitA && !unitB && !unitC) {
+        if (!unitB && !unitC) {
             setIsDisabled(true);
             setUrl("#");
         } else {
             setIsDisabled(false);
-            // setUrl(`/study?ctg_a=${Number(categoryA)}&ctg_b=${Number(categoryB)}&ctg_c=${Number(categoryC)&init_id=${Number(initId)}`)
-            setUrl(`/study?ctg_b=${Number(categoryB)}&ctg_c=${Number(categoryC)}&init_id=${Number(initId)}`)
+            // setUrl(`/study?unit_a=${Number(unitA)}&unit_b=${Number(unitB)}&unit_c=${Number(unitC)&init_id=${Number(initId)}`)
+            setUrl(`/study?unit_b=${Number(unitB)}&unit_c=${Number(unitC)}&init_id=${Number(initId)}`)
         }
 
     }, [formFields]);
 
     return (
         <FormCard title="Εξάσκηση">
-            <label>Επέλεξε κατηγορίες ερωτήσεων</label>
+            <label>Επέλεξε κεφάλαια ερωτήσεων</label>
             {/* <Checkbox
-                id="categoryA"
+                id="unitA"
                 fields={formFields}
                 onChange={handleCheckboxChange}
-                label="Κατηγορία Α"
+                label="Κεφάλαιο Α"
             /> */}
             <Checkbox
-                id="categoryB"
+                id="unitB"
                 fields={formFields}
                 onChange={handleCheckboxChange}
-                label="Κατηγορία Β"
+                label="Κεφάλαιο Β"
             />
             <Checkbox
-                id="categoryC"
+                id="unitC"
                 fields={formFields}
                 onChange={handleCheckboxChange}
-                label="Κατηγορία Γ"
+                label="Κεφάλαιο Γ"
             />
 
             <Input
@@ -106,9 +106,9 @@ const StudyForm: FC  = () => {
 };
 
 type TestFormFields = {
-    // categoryA: string;
-    categoryB: string;
-    categoryC: string;
+    // unitA: string;
+    unitB: string;
+    unitC: string;
     totalFailures: string;
 };
 
@@ -117,9 +117,9 @@ const TestForm: FC  = () => {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const { current: initFields} = useRef<TestFormFields>({
-        // categoryA: "50",
-        categoryB: "30",
-        categoryC: "20",
+        // unitA: "50",
+        unitB: "30",
+        unitC: "20",
         totalFailures: "20",
     });
 
@@ -133,17 +133,17 @@ const TestForm: FC  = () => {
     }, []);
 
     useEffect(() => {
-        // const { categoryA, categoryB, categoryC, totalFailures } = formFields;
-        const { categoryB, categoryC, totalFailures } = formFields;
+        // const { unitA, unitB, unitC, totalFailures } = formFields;
+        const { unitB, unitC, totalFailures } = formFields;
 
-        // if (categoryA === "0" && categoryB === "0" && categoryC === "0") {
-        if (categoryB === "0" && categoryC === "0") {
+        // if (unitA === "0" && unitB === "0" && unitC === "0") {
+        if (unitB === "0" && unitC === "0") {
             setIsDisabled(true);
             setUrl("#");
         } else {
             setIsDisabled(false);
-            // setUrl(`/test?ctg_a=${categoryA}&ctg_b=${categoryB}&ctg_c=${categoryC}&total_f=${totalFailures}`)
-            setUrl(`/test?ctg_b=${categoryB}&ctg_c=${categoryC}&total_f=${totalFailures}`)
+            // setUrl(`/test?unit_a=${unitA}&unit_b=${unitB}&unit_c=${unitC}&total_f=${totalFailures}`)
+            setUrl(`/test?unit_b=${unitB}&unit_c=${unitC}&total_f=${totalFailures}`)
         }
 
     }, [formFields]);
@@ -151,22 +151,22 @@ const TestForm: FC  = () => {
     return (
         <FormCard title="Εξέταση">
             {/* <Input
-                id="categoryA"
+                id="unitA"
                 fields={formFields}
                 onChange={handleTextChange}
-                label="Ερωτήσεις από την κατηγορία Α"
+                label="Ερωτήσεις από το κεφάλαιο Α"
             /> */}
             <Input
-                id="categoryB"
+                id="unitB"
                 fields={formFields}
                 onChange={handleTextChange}
-                label="Ερωτήσεις από την κατηγορία Β (0-123)"
+                label="Ερωτήσεις από το κεφάλαιο Β (0-123)"
             />
             <Input
-                id="categoryC"
+                id="unitC"
                 fields={formFields}
                 onChange={handleTextChange}
-                label="Ερωτήσεις από την κατηγορία Γ (0-58)"
+                label="Ερωτήσεις από το κεφάλαιο Γ (0-58)"
             />
             <Input
                 id="totalFailures"

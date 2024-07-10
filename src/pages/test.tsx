@@ -7,11 +7,11 @@ import Card from "../components/Card";
 import Checkbox from "../components/Checkbox";
 import Button from "../components/Button";
 import { imgSrc, isNumber, shuffleArray } from "../utils";
-import type { CategoryDataType, SelectedOptionsType } from "../types";
+import type { UnitDataType, SelectedOptionsType } from "../types";
 
-import { CATEGORY_B, CATEGORY_C } from "../data";
+import { UNIT_B, UNIT_C } from "../data";
 
-type AnswersType = Omit<CategoryDataType, "answer" | "category"> & {
+type AnswersType = Omit<UnitDataType, "answer" | "unit"> & {
     questionIndex: string;
     correctAnswer: string;
     myAnswer: string;
@@ -26,7 +26,7 @@ type ResultsType = {
 };
 
 type TestCardProps = {
-    data: CategoryDataType;
+    data: UnitDataType;
     selectedAnswer?: SelectedOptionsType;
     qestionIndex: number;
     onAnswerClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -220,7 +220,7 @@ const MistakesSection: FC<{ data: AnswersType[] }> = ({ data }) => {
 };
 
 const Test: FC<PageProps> = ({ location }) => {
-    const [data, setData] = useState<CategoryDataType[]>([]);
+    const [data, setData] = useState<UnitDataType[]>([]);
     const [answers, setAnswers] = useState<AnswersType[]>([]);
     const [results, setResults] = useState<ResultsType>();
     const [currCardId, setCurrCardId] = useState("");
@@ -229,29 +229,29 @@ const Test: FC<PageProps> = ({ location }) => {
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
-        // const ctgA = params?.get("ctg_a");
-        const ctgB = params?.get("ctg_b");
-        const ctgC = params?.get("ctg_c");
+        // const unitA = params?.get("unit_a");
+        const unitB = params?.get("unit_b");
+        const unitC = params?.get("unit_c");
         const totalF = params?.get("total_f");
 
-        // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
-        if (!isNumber(ctgB) || !isNumber(ctgC) || !isNumber(totalF)) {
+        // if (!isNumber(unitA) || !isNumber(unitB) || !isNumber(unitC) || !isNumber(totalF)) {
+        if (!isNumber(unitB) || !isNumber(unitC) || !isNumber(totalF)) {
             navigate("/404");
             return;
         }
 
         setTotalFailures(totalF);
 
-        shuffleArray(CATEGORY_B);
-        shuffleArray(CATEGORY_C);
+        shuffleArray(UNIT_B);
+        shuffleArray(UNIT_C);
 
-        const _data: CategoryDataType[] = [];
-        // if (ctgA)
-        //     data.push.apply(data, CATEGORY_A.slice(0, Number(ctgA)));
-        if (ctgB)
-            _data.push.apply(_data, CATEGORY_B.slice(0, Number(ctgB)));
-        if (ctgC)
-            _data.push.apply(_data, CATEGORY_C.slice(0, Number(ctgC)));
+        const _data: UnitDataType[] = [];
+        // if (unitA)
+        //     data.push.apply(data, UNIT_A.slice(0, Number(unitA)));
+        if (unitB)
+            _data.push.apply(_data, UNIT_B.slice(0, Number(unitB)));
+        if (unitC)
+            _data.push.apply(_data, UNIT_C.slice(0, Number(unitC)));
 
         setData(_data);
         setAnswers(_data.map((q, index) => ({

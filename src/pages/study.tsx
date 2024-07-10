@@ -7,12 +7,12 @@ import Card from "../components/Card";
 import Checkbox from "../components/Checkbox";
 import Button from "../components/Button";
 import { imgSrc, isNumber } from "../utils";
-import type { CategoryDataType, SelectedOptionsType } from "../types";
+import type { UnitDataType, SelectedOptionsType } from "../types";
 
-import { CATEGORY_B, CATEGORY_C } from "../data";
+import { UNIT_B, UNIT_C } from "../data";
 
 type StudyCardProps = {
-    data: CategoryDataType;
+    data: UnitDataType;
     onNextClick: () => void;
     className?: string;
 };
@@ -24,7 +24,7 @@ const StudyCard: FC<StudyCardProps> = ({ data, onNextClick, className }) => {
     return (
         <Card className={className}>
             <div className={cardStyles.studyTitle} style={{ display: "flex", columnGap: 10, rowGap: 20 }}>
-                <strong>{data.category}</strong>
+                <strong>{data.unit}</strong>
                 <span style={{ borderRadius: 4, backgroundColor: "var(--bg-darker)", color: "var(--text-light)", padding: "8px 10px" }}>Ερώτηση {data.id}</span>
             </div>
 
@@ -77,30 +77,30 @@ const StudyCard: FC<StudyCardProps> = ({ data, onNextClick, className }) => {
 };
 
 const StudyCards: FC<PageProps> = ({ location }) => {
-    const [data, setData] = useState<CategoryDataType[]>([]);
+    const [data, setData] = useState<UnitDataType[]>([]);
     const [currCardId, setCurrCardId] = useState("");
     const [finished, setFinished] = useState(false);
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
-        // const ctgA = params?.get("ctg_a");
-        const ctgB = params?.get("ctg_b");
-        const ctgC = params?.get("ctg_c");
+        // const unitA = params?.get("unit_a");
+        const unitB = params?.get("unit_b");
+        const unitC = params?.get("unit_c");
         const initId = params?.get("init_id");
 
-        // if (!isNumber(ctgA) || !isNumber(ctgB) || !isNumber(ctgC)) {
-        if (!isNumber(ctgB) || !isNumber(ctgC)) {
+        // if (!isNumber(unitA) || !isNumber(unitB) || !isNumber(unitC)) {
+        if (!isNumber(unitB) || !isNumber(unitC)) {
             navigate("/404");
             return;
         }
 
-        const _data: CategoryDataType[] = [];
-        // if (Boolean(Number(ctgA)))
-        //     data.concat(CATEGORY_A);
-        if (Boolean(Number(ctgB)))
-            _data.push.apply(_data, CATEGORY_B);
-        if (Boolean(Number(ctgC)))
-            _data.push.apply(_data, CATEGORY_C);
+        const _data: UnitDataType[] = [];
+        // if (Boolean(Number(unitA)))
+        //     data.concat(UNIT_A);
+        if (Boolean(Number(unitB)))
+            _data.push.apply(_data, UNIT_B);
+        if (Boolean(Number(unitC)))
+            _data.push.apply(_data, UNIT_C);
 
         setData(_data);
 
