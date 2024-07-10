@@ -324,7 +324,7 @@ const Test: FC<PageProps> = ({ location }) => {
                                 {results.passed ? "Συγχαρητήρια !" : "Προσπάθησε ξανά"}
                             </h1>
                             <strong style={{ fontSize: 18 }}>
-                                Αποτελέσματα: {results.correctCount} / {results.totalCount}
+                                Βαθμολογία: {results.correctCount} / {results.totalCount} ({(results.correctCount / results.totalCount * 100).toFixed(2)}%)
                             </strong>
 
                             <Link to="/">Επιστροφή</Link>
