@@ -134,6 +134,10 @@ const MistakesSection: FC<{ data: AnswersType[] }> = ({ data }) => {
         });
     };
 
+    if (!data.length) {
+        return null;
+    }
+
     return (
         <section style={{ width: "100%", maxWidth: 600, margin: "10px auto 0px" }}>
             <h3 style={{ marginBottom: 20 }}>Λάθη</h3>
